@@ -1,0 +1,11 @@
+chars(1-2):
+		{
+			"desciption": string,
+			"cargo":cargo,
+			"cargoSize":int,
+			"minimumCrew":int,
+			"name": string,
+			"sizeIndex": int,
+			"range": range
+			"other": string
+		},

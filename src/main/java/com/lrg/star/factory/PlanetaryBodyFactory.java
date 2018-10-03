@@ -27,7 +27,64 @@ public class PlanetaryBodyFactory
     
     public BasePlanetaryBody build()
     {
-        return new BasePlanetaryBody(name, mass, elements, populations, techLevel, tempKelvin, satellites, rings, volume, type);
+        lastBody = new BasePlanetaryBody(name, mass, elements, populations, techLevel, tempKelvin, satellites, rings, volume, type);
+        return lastBody;
+    }
+    
+    public BasePlanetaryBody getLastBody()
+    {
+        return lastBody;
     }
 
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public void setMass(Mass mass)
+    {
+        this.mass = mass;
+    }
+
+    public void setElements(HashMap<PeriodicElement, Double> elements)
+    {
+        this.elements = elements;
+    }
+
+    public void setPopulations(List<Population> populations)
+    {
+        this.populations = populations;
+    }
+
+    public void setTechLevel(Integer techLevel)
+    {
+        this.techLevel = techLevel;
+    }
+
+    public void setTempKelvin(Integer tempKelvin)
+    {
+        this.tempKelvin = tempKelvin;
+    }
+
+    public void setSatellites(List<Satellite> satellites)
+    {
+        this.satellites = satellites;
+    }
+
+    public void setRings(List<Ring> rings)
+    {
+        this.rings = rings;
+    }
+
+    public void setVolume(Double volume)
+    {
+        this.volume = volume;
+    }
+
+    public void setType(CosmicType type)
+    {
+        this.type = type;
+    }
+    
+    
 }

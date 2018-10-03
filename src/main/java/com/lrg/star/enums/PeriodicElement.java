@@ -124,13 +124,13 @@ public enum PeriodicElement
 
     private PeriodicElement(int a)
     {
-        symbolWeight = a;
+        atomicWeight = a;
     }
 
-    private final int symbolWeight;
+    private final int atomicWeight;
 
     public int getWeight()
     {
-        return symbolWeight;
+        return atomicWeight;
     }
 }

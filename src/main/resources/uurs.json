@@ -1,0 +1,135 @@
+"cargo": {
+	"enum": ["personelle", "material", "generic", "combat", "special"]
+}
+
+
+
+"range": {
+	"enum": ["short", "medium", "long", "interstellar", "intergalactic", "probabalistic"]
+}
+
+
+
+"shipClassification": {
+	"classes":
+	[
+		"ep":
+		{
+			"tolerance": "Ship-to-any",
+			"cargo":"personelle",
+			"cargoSize":"5",
+			"minimumCrew":"1",
+			"name": "Escape Pod",
+			"sizeIndex":"0",
+			"range": "medium",
+			"other": "One-way, one use"
+		},
+		
+		"as":
+		{
+			"tolerance": "Ship-to-ship",
+			"cargo":"combat",
+			"cargoSize": "3",
+			"minimumCrew": "1",
+			"name": "Assault Ship",
+			"sizeIndex": "0",
+			"range": "short",
+			"other": ""
+		},
+		
+		"xb":
+		{
+			"tolerance": "Ship-to-ship",
+			"cargo":"personelle",
+			"cargoSize":"10",
+			"minimumCrew":"1",
+			"name": "Crossing Boat",
+			"sizeIndex":"0",
+			"range": "short",
+			"other": ""
+		},
+		
+		"s":
+		{
+			"tolerance": "Ship-to-any",
+			"cargo":"generic",
+			"cargoSize": "18",
+			"minimumCrew": "1",
+			"name": "Schooner",
+			"sizeIndex": "1",
+			"range": "long",
+			"other": ""
+		},
+		
+		"c":
+		{
+			"tolerance": "Ship-to-any",
+			"cargo":"generic",
+			"cargoSize": "52",
+			"minimumCrew": "3",
+			"name": "Cruiser",
+			"sizeIndex": "2",
+			"range": "long",
+			"other": ""
+		},
+
+		"f":
+		{
+			"tolerance": "Ship-to-ship",
+			"cargo":"combat",
+			"cargoSize":"80",
+			"minimumCrew":"8",
+			"name": "Frigate",
+			"sizeIndex": "3",
+			"range": "interstellar",
+			"other": ""
+		},
+
+		"ss":
+		{
+			"tolerance": "Ship-to-ship",
+			"cargo":"personelle",
+			"cargoSize":"1500",
+			"minimumCrew":"50",
+			"name": "Starliner",
+			"sizeIndex": "6",
+			"range": "interstellar",
+			"other": "Cargo size can vary, mode given"
+		},
+
+		"hf"
+		{
+			"tolerance": "Ship-to-ship",
+			"cargo":"special",
+			"cargoSize":"3500",
+			"minimumCrew":"12",
+			"name": "Heavy Ferry",
+			"sizeIndex": "18",
+			"range": "intergalactic",
+			"other": "Often used to transport vessels without IS or IG capability"
+		},
+		
+		"o"
+		{
+			"tolerance": "Ship-to-ship",
+			"cargo":"special",
+			"cargoSize":"1500000",
+			"minimumCrew":"1",
+			"name": "Seed Ship",
+			"sizeIndex": "100",
+			"range": "intergalactic",
+			"other": ""
+		},
+
+	]
+
+
+
+
+
+
+
+
+
+		
+}
