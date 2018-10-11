@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.lrg.star.Interactable;
 
-public class BaseInteractableObject extends BaseObjectImpl implements Interactable
+public abstract class BaseInteractableObject extends BaseObjectImpl implements Interactable
 {
+    protected Mass mass;
     public <T extends Interactable> List<T> interact(T t)
     {
         return null;
@@ -28,7 +29,7 @@ public class BaseInteractableObject extends BaseObjectImpl implements Interactab
         this.name = name;
     }
 
-
+    public abstract Mass getMass();
 
 
 }

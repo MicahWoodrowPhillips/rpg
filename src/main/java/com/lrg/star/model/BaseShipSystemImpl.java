@@ -55,6 +55,12 @@ public class BaseShipSystemImpl extends BaseInteractableObject implements ShipSy
     {
         return null;
     }
+    
+    @Override
+    public Mass getMass()
+    {
+        return this.mass;
+    }
 
 
 }

@@ -7,7 +7,6 @@ import com.lrg.star.ShipSystem;
 
 public abstract class Starship extends BaseInteractableObject implements CosmicEntity
 {
-    protected Mass mass;
     protected List<ShipSystem> systems;
     
     public void heartbeat()
