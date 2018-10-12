@@ -36,23 +36,78 @@ public class CsvReader
         injestFlat(csvFileLocation);
     }
     
+    public CsvReader(String csvFileLocation, String marker)
+    {
+        injestByConstraintValuePair(csvFileLocation, marker);
+    }
+    
     public List<String> getContents()
     {
         return contents;
     }
     
+    public boolean injestByConstraintValuePair(String csvFileLocation, String marker)
+    {
+        BufferedReader br = null;
+        
+        contents = new ArrayList<>();
+        try
+        {
+            this.csvFileLocation = csvFileLocation;
+            br = new BufferedReader(new FileReader(this.csvFileLocation));
+            while ((line = br.readLine()) != null)
+            {
+                List<String> pair = Arrays.asList(line.split(DELIMITER));
+                
+                if (marker.equals(pair.get(0)))
+                {
+                    contents.add(pair.get(1));
+                }
+            }
+            
+        }
+        catch(FileNotFoundException e)
+        {
+            // logger.error(e);
+            e.printStackTrace();
+            return false;
+        }
+        catch (IOException e)
+        {
+            // logger.error(e);
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            if (br != null)
+            {
+                try
+                {
+                    br.close();
+                }
+                catch (IOException e)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
     public boolean injestFlat(String csvFileLocation)
     {
         BufferedReader br = null;
+        contents = new ArrayList<>();
         try
         {
-            contents = new ArrayList<String>();
             this.csvFileLocation = csvFileLocation;
             br = new BufferedReader(new FileReader(this.csvFileLocation));
             while ((line = br.readLine()) != null)
             {
                 contents.addAll(Arrays.asList(line.split(DELIMITER)));
             }
+            
         }
         catch(FileNotFoundException e)
         {
