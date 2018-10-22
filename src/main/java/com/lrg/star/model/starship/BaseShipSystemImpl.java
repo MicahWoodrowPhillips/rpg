@@ -1,8 +1,12 @@
-package com.lrg.star.model;
+package com.lrg.star.model.starship;
 
 import java.util.List;
 
 import com.lrg.star.ShipSystem;
+import com.lrg.star.model.BaseInteractableObject;
+import com.lrg.star.model.Energy;
+import com.lrg.star.model.Health;
+import com.lrg.star.model.Mass;
 
 public class BaseShipSystemImpl extends BaseInteractableObject implements ShipSystem 
 {

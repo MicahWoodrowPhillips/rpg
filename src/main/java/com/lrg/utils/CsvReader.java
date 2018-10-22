@@ -6,51 +6,47 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * CsvReader <p />
  * 
- * Only use the no-args CTOR if you are specifically planning to invoke the 
- * injestFlat or other injest functions explicitly, because it will come 
- * with a null contents var.
+ * Reads in a file and keeps a copy of its contents.  If you have no marker to constrain by,<br>
+ * leave it null or blank and the reader will assume the file is flat with no markers.
  */
 public class CsvReader
 {
     private String csvFileLocation;
     private String line;
-    private List<String> contents;
+    private Set<String> contents;
 
     private final String DELIMITER = ",";
-    
-    CsvReader()
-    {}
-    
-    /**
-     * This CTOR runs the {@code com.lrg.utils.CsvReader.injestFlat(String)} to fulfill its contents requirements.
-     * 
-     * @param csvFileLocation
-     */
-    public CsvReader(String csvFileLocation)
-    {
-        injestFlat(csvFileLocation);
-    }
+    private boolean hasValidFile = false;
     
     public CsvReader(String csvFileLocation, String marker)
     {
-        injestByConstraintValuePair(csvFileLocation, marker);
+        hasValidFile = injestByConstraintValuePair(csvFileLocation, marker);
     }
     
     public List<String> getContents()
     {
-        return contents;
+        return new ArrayList<>(contents);
     }
     
     public boolean injestByConstraintValuePair(String csvFileLocation, String marker)
     {
+        if (StringUtils.isBlank(marker))
+        {
+            return injestFlat(csvFileLocation);
+        }
+        
         BufferedReader br = null;
         
-        contents = new ArrayList<>();
+        contents = new HashSet<>();
         try
         {
             this.csvFileLocation = csvFileLocation;
@@ -95,10 +91,10 @@ public class CsvReader
         return true;
     }
     
-    public boolean injestFlat(String csvFileLocation)
+    private boolean injestFlat(String csvFileLocation)
     {
         BufferedReader br = null;
-        contents = new ArrayList<>();
+        contents = new HashSet<String>();
         try
         {
             this.csvFileLocation = csvFileLocation;
@@ -140,7 +136,16 @@ public class CsvReader
 
     public int getSize()
     {
+        if (!hasValidFile)
+        {
+            return 0;
+        }
         return contents.size();
+    }
+    
+    public boolean getHasValidFile()
+    {
+        return hasValidFile;
     }
 
 }

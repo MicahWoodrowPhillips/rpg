@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lrg.star.ShipSystem;
 import com.lrg.star.model.Mass;
-import com.lrg.star.model.Starship;
+import com.lrg.star.model.starship.Starship;
 
 public class StarshipFactory
 {

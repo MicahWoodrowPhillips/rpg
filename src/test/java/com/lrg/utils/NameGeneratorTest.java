@@ -9,19 +9,22 @@ import java.util.HashSet;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.lrg.utils.NameGenerator.Sex;
-
 public class NameGeneratorTest
 {
     
+    private String malePath;
+    private String femalePath;
+    private String lastNamePath;
+    private String eitherPath;
+
     @Test
     public void testMaleFName()
     {
-        
-        String name = NameGenerator.generateFirstName(Sex.MALE);
+        NameGenerator nameGenerator = new NameGenerator(malePath, "M");
+        String name = nameGenerator.generateName();
         
         assertNotNull(name);
-        assertNotEquals(name, NameGenerator.generateFirstName(Sex.MALE));
+        assertNotEquals(name, nameGenerator.generateName());
         assertFalse(name.startsWith(" "));
         assertFalse(name.endsWith(" "));
     }
@@ -29,9 +32,11 @@ public class NameGeneratorTest
     @Test
     public void testFemaleFName()
     {
-        String name = NameGenerator.generateFirstName(Sex.FEMALE);
+        NameGenerator nameGenerator = new NameGenerator(femalePath, "F");
+        String name = nameGenerator.generateName();
+        
         assertNotNull(name);
-        assertNotEquals(name, NameGenerator.generateFirstName(Sex.FEMALE));
+        assertNotEquals(name, nameGenerator.generateName());
         assertFalse(name.startsWith(" "));
         assertFalse(name.endsWith(" "));
     }
@@ -39,9 +44,11 @@ public class NameGeneratorTest
     @Test
     public void testEitherFName()
     {
-        String name = NameGenerator.generateFirstName(Sex.EITHER);
+        NameGenerator nameGenerator = new NameGenerator(eitherPath, "");
+        String name = nameGenerator.generateName();
+        
         assertNotNull(name);
-        assertNotEquals(name, NameGenerator.generateFirstName(Sex.EITHER));
+        assertNotEquals(name, nameGenerator.generateName());
         assertFalse(name.startsWith(" "));
         assertFalse(name.endsWith(" "));
     }
@@ -49,9 +56,11 @@ public class NameGeneratorTest
     @Test
     public void testLastName()
     {
-        String name = NameGenerator.generateLastName();
+        NameGenerator nameGenerator = new NameGenerator(lastNamePath, "");
+        String name = nameGenerator.generateName();
+        
         assertNotNull(name);
-        assertNotEquals(name, NameGenerator.generateLastName());
+        assertNotEquals(name, nameGenerator.generateName());
         assertFalse(name.startsWith(" "));
         assertFalse(name.endsWith(" "));
     }
@@ -60,9 +69,13 @@ public class NameGeneratorTest
     public void nameDumpTest()
     {
         HashSet<String> set = new HashSet<String>();
+        
+        NameGenerator nameGenerator = new NameGenerator(femalePath, "");
+        String name;
+        
         for(int i = 0; i < 10000; i++)
         {
-            String name = NameGenerator.generateFirstName(0);
+            name = nameGenerator.generateName();
             
             System.out.println(name + " is name number " + i);
             

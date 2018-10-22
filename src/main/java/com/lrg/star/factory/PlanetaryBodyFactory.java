@@ -8,8 +8,8 @@ import com.lrg.star.enums.PeriodicElement;
 import com.lrg.star.model.BasePlanetaryBody;
 import com.lrg.star.model.Mass;
 import com.lrg.star.model.Population;
-import com.lrg.star.model.Ring;
-import com.lrg.star.model.Satellite;
+import com.lrg.star.model.CelestialRing;
+import com.lrg.star.model.starship.Satellite;
 
 public class PlanetaryBodyFactory
 {
@@ -21,7 +21,7 @@ public class PlanetaryBodyFactory
     private Integer techLevel;
     private Integer tempKelvin;
     private List<Satellite> satellites;
-    private List<Ring> rings;
+    private List<CelestialRing> rings;
     private Double volume;
     private CosmicType type;
     
@@ -71,7 +71,7 @@ public class PlanetaryBodyFactory
         this.satellites = satellites;
     }
 
-    public void setRings(List<Ring> rings)
+    public void setRings(List<CelestialRing> rings)
     {
         this.rings = rings;
     }

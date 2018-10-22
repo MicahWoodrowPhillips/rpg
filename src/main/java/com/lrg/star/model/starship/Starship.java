@@ -1,9 +1,12 @@
-package com.lrg.star.model;
+package com.lrg.star.model.starship;
 
 import java.util.List;
 
 import com.lrg.star.CosmicEntity;
 import com.lrg.star.ShipSystem;
+import com.lrg.star.model.BaseInteractableObject;
+import com.lrg.star.model.Inertia;
+import com.lrg.star.model.Mass;
 
 public abstract class Starship extends BaseInteractableObject implements CosmicEntity
 {

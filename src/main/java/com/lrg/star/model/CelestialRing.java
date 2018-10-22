@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.lrg.star.enums.PeriodicElement;
 
-public class Ring
+public class CelestialRing
 {
     private List<PeriodicElement> elements;
     private float innerRadius, outerRadius;
+    private CosmicBody centerObject;
 //    private List<Color> colors;
 
 }

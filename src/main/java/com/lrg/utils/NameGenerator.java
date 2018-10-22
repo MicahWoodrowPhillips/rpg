@@ -2,107 +2,51 @@ package com.lrg.utils;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 public class NameGenerator
 {
-    // TODO Create config with those names pulled in from file, instead of referencing the files here.
+    private static Logger logger = LoggerFactory.getLogger(NameGenerator.class);
 
-    private static final String FNAMES = "C:\\Users\\wphillips.PAYFONE\\eclipse-workspace-lrg\\rpg\\src\\main\\resources\\fnames.csv";
-    private static final String LNAMES = "C:\\Users\\wphillips.PAYFONE\\eclipse-workspace-lrg\\rpg\\src\\main\\resources\\lnames.csv";
-    private static Random rand = new Random();
+    private String namesPath;
+    private List<String> namesList;
+    
+    private Random rand = new Random();
 
-    private static CsvReader csvReaderFirstNamesMale = null;
-    private static CsvReader csvReaderFirstNamesFemale = null;
-    private static CsvReader csvReaderLastNames = null;
+    private String constraint;
 
-    public static String generateFirstName(NameGenerator.Sex sex)
+    public NameGenerator(String namesPath, String constraint)
     {
-        return generateFirstName(sex.value).trim();
+        this.namesPath = namesPath;
+        this.constraint = constraint;
     }
     
-    public static String generateFirstName(int sex)
+    public String generateName()
     {
-        if (sex < 0)
-        {
-            return maleFirstName();
-        }
-        else if (sex == 0)
-        {
-            return eitherFirstName();
-        }
-        else
-        {
-            return femaleFirstName();
-        }
+        ensureNamesLoaded();
+        return namesList.get(rand.nextInt(namesList.size()));
     }
-
-    private static String femaleFirstName()
+    
+    private void ensureNamesLoaded()
     {
-        ensureFirstNamesLoaded();
-        if (csvReaderFirstNamesFemale == null)
+        if (namesList == null) 
         {
-            return "Jen";
-        }
-        return csvReaderFirstNamesFemale.getContents().get(rand.nextInt(csvReaderFirstNamesFemale.getSize()));
-    }
-
-    private static String eitherFirstName()
-    {
-        ensureFirstNamesLoaded();
-        int which = rand.nextInt(2);
-        if (which == 0)
-            return maleFirstName();
-        else
-            return femaleFirstName();
-    }
-
-    private static String maleFirstName()
-    {
-        ensureFirstNamesLoaded();
-        if (csvReaderFirstNamesMale == null)
-        {
-            return "John";
-        }
-        return csvReaderFirstNamesMale.getContents().get(rand.nextInt(csvReaderFirstNamesMale.getSize()));
-    }
-
-    public static String generateLastName()
-    {
-        ensureLastNamesLoaded();
-        List<String> lNames = csvReaderLastNames.getContents();
-        return lNames.get(rand.nextInt(lNames.size()));
-    }
-
-    private static void ensureLastNamesLoaded()
-    {
-        if (csvReaderLastNames == null)
-        {
-            csvReaderLastNames = new CsvReader(LNAMES);
-        }
-    }
-
-    private static void ensureFirstNamesLoaded()
-    {
-        if (csvReaderFirstNamesMale == null)
-        {
-            csvReaderFirstNamesMale = new CsvReader(FNAMES, "B");
+            CsvReader csvReader = new CsvReader(namesPath, constraint);
+            if (!csvReader.getHasValidFile())
+            {
+                logger.error("Cannot find file at " + namesPath);
+            }
+            else
+            {
+                namesList = csvReader.getContents().stream().map(String::trim).collect(Collectors.toList());
+            }
         }
         
-        if (csvReaderFirstNamesFemale == null)
-        {
-            csvReaderFirstNamesFemale = new CsvReader(FNAMES, "G");
-        }
     }
 
-    public enum Sex
-    {
-        MALE(-1), EITHER(0), FEMALE(1);
-
-        private int value;
-
-        Sex(int a)
-        {
-            this.value = a;
-        }
-    }
 }
