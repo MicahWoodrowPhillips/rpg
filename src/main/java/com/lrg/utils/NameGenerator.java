@@ -15,10 +15,17 @@ public class NameGenerator
 
     private String namesPath;
     private List<String> namesList;
+    private boolean flatCsv = false;
     
     private Random rand = new Random();
 
     private String constraint;
+
+    public NameGenerator(String lastNamePath)
+    {
+        this(lastNamePath, "");
+        flatCsv = true;
+    }
 
     public NameGenerator(String namesPath, String constraint)
     {
@@ -36,7 +43,7 @@ public class NameGenerator
     {
         if (namesList == null) 
         {
-            CsvReader csvReader = new CsvReader(namesPath, constraint);
+            CsvReader csvReader = flatCsv ? new CsvReader(namesPath) : new CsvReader(namesPath, constraint);
             if (!csvReader.getHasValidFile())
             {
                 logger.error("Cannot find file at " + namesPath);

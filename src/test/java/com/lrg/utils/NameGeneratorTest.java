@@ -12,15 +12,20 @@ import org.junit.Test;
 public class NameGeneratorTest
 {
     
-    private String malePath;
-    private String femalePath;
+    private String firstNamePath;
     private String lastNamePath;
-    private String eitherPath;
+    
+    @Before
+    public void setup()
+    {
+        firstNamePath = "fnames.csv";
+        lastNamePath = "lnames.csv";    
+    }
 
     @Test
     public void testMaleFName()
     {
-        NameGenerator nameGenerator = new NameGenerator(malePath, "M");
+        NameGenerator nameGenerator = new NameGenerator(firstNamePath, "B");
         String name = nameGenerator.generateName();
         
         assertNotNull(name);
@@ -32,7 +37,7 @@ public class NameGeneratorTest
     @Test
     public void testFemaleFName()
     {
-        NameGenerator nameGenerator = new NameGenerator(femalePath, "F");
+        NameGenerator nameGenerator = new NameGenerator(firstNamePath, "G");
         String name = nameGenerator.generateName();
         
         assertNotNull(name);
@@ -44,7 +49,7 @@ public class NameGeneratorTest
     @Test
     public void testEitherFName()
     {
-        NameGenerator nameGenerator = new NameGenerator(eitherPath, "");
+        NameGenerator nameGenerator = new NameGenerator(firstNamePath, "");
         String name = nameGenerator.generateName();
         
         assertNotNull(name);
@@ -56,7 +61,7 @@ public class NameGeneratorTest
     @Test
     public void testLastName()
     {
-        NameGenerator nameGenerator = new NameGenerator(lastNamePath, "");
+        NameGenerator nameGenerator = new NameGenerator(lastNamePath);
         String name = nameGenerator.generateName();
         
         assertNotNull(name);
@@ -70,18 +75,18 @@ public class NameGeneratorTest
     {
         HashSet<String> set = new HashSet<String>();
         
-        NameGenerator nameGenerator = new NameGenerator(femalePath, "");
+        NameGenerator nameGenerator = new NameGenerator(firstNamePath, "");
         String name;
         
         for(int i = 0; i < 10000; i++)
         {
             name = nameGenerator.generateName();
             
-            System.out.println(name + " is name number " + i);
+            System.out.println(name + " is name number " + (i+1));
             
             if(!set.add(name))
             {
-                System.out.println(name + " already existed.  " + (i-1) + " unique names generated in total.");
+                System.out.println("\n" + name + " already existed.  " + i + " unique names generated in total.");
                 break;
             }
         }

@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,10 +28,17 @@ public class CsvReader
 
     private final String DELIMITER = ",";
     private boolean hasValidFile = false;
+
+    public CsvReader(String csvFileLocation)
+    {
+        this.csvFileLocation = csvFileLocation;
+        hasValidFile = injestFlat();
+    }
     
     public CsvReader(String csvFileLocation, String marker)
     {
-        hasValidFile = injestByConstraintValuePair(csvFileLocation, marker);
+        this.csvFileLocation = csvFileLocation;
+        hasValidFile = injestByConstraintValuePair(marker);
     }
     
     public List<String> getContents()
@@ -37,25 +46,21 @@ public class CsvReader
         return new ArrayList<>(contents);
     }
     
-    public boolean injestByConstraintValuePair(String csvFileLocation, String marker)
+    public boolean injestByConstraintValuePair(String marker)
     {
-        if (StringUtils.isBlank(marker))
-        {
-            return injestFlat(csvFileLocation);
-        }
+        boolean useAllMarkers = StringUtils.isBlank(marker);
         
         BufferedReader br = null;
         
         contents = new HashSet<>();
         try
         {
-            this.csvFileLocation = csvFileLocation;
-            br = new BufferedReader(new FileReader(this.csvFileLocation));
+            br = getBufferedReader();
             while ((line = br.readLine()) != null)
             {
                 List<String> pair = Arrays.asList(line.split(DELIMITER));
                 
-                if (marker.equals(pair.get(0)))
+                if (useAllMarkers || marker.equals(pair.get(0)))
                 {
                     contents.add(pair.get(1));
                 }
@@ -91,14 +96,20 @@ public class CsvReader
         return true;
     }
     
-    private boolean injestFlat(String csvFileLocation)
+    private BufferedReader getBufferedReader()
+    {
+        InputStream is = getClass().getClassLoader().getResourceAsStream(this.csvFileLocation);
+        return new BufferedReader(new InputStreamReader(is));
+    }
+
+    private boolean injestFlat()
     {
         BufferedReader br = null;
         contents = new HashSet<String>();
         try
         {
             this.csvFileLocation = csvFileLocation;
-            br = new BufferedReader(new FileReader(this.csvFileLocation));
+            br = getBufferedReader();
             while ((line = br.readLine()) != null)
             {
                 contents.addAll(Arrays.asList(line.split(DELIMITER)));
