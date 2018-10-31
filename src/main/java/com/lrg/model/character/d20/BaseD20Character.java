@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.lrg.star.Interactable;
 import com.lrg.star.model.Energy;
 import com.lrg.star.model.Health;
 import com.lrg.star.model.Mass;
@@ -55,5 +56,18 @@ public class BaseD20Character
         this.levels = new ArrayList<CharacterClass>(classLevels);
     }
     
+    public Attack getMeleeWeaponAttack(Interactable target, Weapon weapon)
+    {
+        Attack melee = new MeleeAttack(target, weapon);
+                
+        return melee;
+    }
     
+    public Attack getRangedWeaponAttack(Interactable target, Weapon weapon)
+    {
+        Attack ranged = null;
+        
+        return ranged;
+        
+    }
 }
