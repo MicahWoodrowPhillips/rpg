@@ -9,7 +9,7 @@ import com.lrg.star.model.Energy;
 import com.lrg.star.model.Health;
 import com.lrg.star.model.Mass;
 
-public class BaseD20Character
+public abstract class BaseD20Character
 {
     protected RuleSet ruleSet;
     
@@ -70,4 +70,6 @@ public class BaseD20Character
         return ranged;
         
     }
+    
+    public abstract RuleSet getRuleSet();    
 }
