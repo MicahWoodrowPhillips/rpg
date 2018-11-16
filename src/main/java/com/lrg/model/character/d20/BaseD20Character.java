@@ -26,7 +26,7 @@ public abstract class BaseD20Character
     
     protected List<Skill> skills;
     
-    protected Map<Slot, Equipment> equipment;
+    protected Map<BodySlot, Equipment> equipment;
     
     /**
      * Order will matter for the levels at some point possibly, so we should keep them in some kind of ordered list.

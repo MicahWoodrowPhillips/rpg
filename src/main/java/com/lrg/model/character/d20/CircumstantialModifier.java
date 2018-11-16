@@ -8,12 +8,18 @@ package com.lrg.model.character.d20;
  *  <li>Flanking Bonus </li>
  *  <li>Circumstance Bonuses </li>
  *  <li>Even stackable things like Dodge Bonuses </li>
+ *  <li>Other temporary things</li>
  * </ul>
  * @author wphillips
  *
  */
 public class CircumstantialModifier extends Modifier
 {
+    public CircumstantialModifier(Influential influentialObject)
+    {
+        super(influentialObject);
+    }
+
     private Circumstance circumstance;
 
     public Circumstance getCircumstance()

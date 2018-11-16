@@ -2,12 +2,20 @@ package com.lrg.model.character.d20;
 
 import com.lrg.model.character.Rules;
 
-public class Attribute
+public class Attribute implements Influential
 {
     private String name;
-    private short value;
-    private short modifier;
+    private int value;
+    private Modifier modifier;
+    private Rules rules;
 
+
+    /**
+     * Default Attribute uses default d20 rules.
+     * 
+     * @see com.lrg.model.character.d20.DefaultD20Rules
+     * @param name
+     */
     public Attribute(String name)
     {
         this(name, new DefaultD20Rules());
@@ -17,17 +25,11 @@ public class Attribute
     public Attribute(String name, Rules rules)
     {
         this.name = name;
-        applyRules(rules);
+        this.rules = rules;
+        this.modifier = new Modifier(this);
     }
     
-    private int applyRules(Rules rules)
-    {
-        // Should include some logging, in case we ever mix rulesets.
-        
-        return rules.conform(value);
-    }
-
-    public short getValue()
+    public int getValue()
     {
         return value;
     }
@@ -37,9 +39,12 @@ public class Attribute
         this.value = value;
     }
 
-    public short getModifier()
+    public String getName()
+    {
+        return name;
+    }
+    public Modifier getModifier()
     {
         return modifier;
     }
-
 }

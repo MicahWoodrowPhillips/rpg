@@ -2,7 +2,9 @@ package com.lrg.model.character.d20;
 
 import java.util.List;
 
-public class Skill
+import com.lrg.model.character.Rules;
+
+public class Skill implements Influential
 {
     private String name;
     private String description;
@@ -14,8 +16,14 @@ public class Skill
     private List<CircumstantialModifier> circumstantialModifiers;
     private int abilityMod;
     private Attribute ability;
+    private Rules rules;
     
-    
+    public Skill(String name, Attribute reigningAttribute)
+    {
+        this.name = name;
+        totalMod = new Modifier(this);
+        totalMod.addInfluence(reigningAttribute);
+    }
     
     public String getName()
     {
@@ -32,15 +40,6 @@ public class Skill
     public void setDescription(String description)
     {
         this.description = description;
-    }
-    public Modifier getTotalMod()
-    {
-        recheckAllFactors();
-        return totalMod;
-    }
-    public void setTotalMod(Modifier totalMod)
-    {
-        this.totalMod = totalMod;
     }
     public int getRanks()
     {
@@ -104,10 +103,15 @@ public class Skill
     {
         int total = 0;
         total += ranks;
-        total += classSkill ? 3 : 0;
-//        total = circumstantialModifiers.stream().doShit();
-        total += ability.getModifier();
+        total += classSkill ? rules.getClassSkillBonus(ranks) : 0;
+        total += ability.getModifier().getValue();
         
-        
+    }
+
+    @Override
+    public int getValue()
+    {
+        recheckAllFactors();
+        return totalMod.getValue();
     }
 }

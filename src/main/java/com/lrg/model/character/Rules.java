@@ -3,9 +3,8 @@ package com.lrg.model.character;
 public class Rules
 {
 
-    public int conform(short value)
+    public int getClassSkillBonus(int ranks)
     {
-        // TODO Auto-generated method stub
         return 0;
     }
 

@@ -1,11 +1,24 @@
 package com.lrg.model.character.d20;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+/**
+ * Represents a total modifier, which can be influenced potentially many other sources.
+ * 
+ * @author wphillips
+ *
+ */
 public class Modifier
 {
-    int value;
-    List<Object> influencers;
+    private int value;
+    private Set<Influential> influencers;
+    
+    
+    public Modifier(Influential influentialObject)
+    {
+        addInfluence(influentialObject);
+    }
     public int getValue()
     {
         return value;
@@ -14,15 +27,20 @@ public class Modifier
     {
         this.value = value;
     }
-    public List<Object> getInfluencers()
+    public Set<Influential> getInfluencers()
     {
         return influencers;
     }
-    public void setInfluencers(List<Object> influencers)
+    public void setInfluencers(Set<Influential> influencers)
     {
         this.influencers = influencers;
     }
-    
-    
-
+    public void addInfluence(Influential influentialObject)
+    {
+        if (influencers == null)
+            influencers = new HashSet();
+        
+        influencers.add(influentialObject);
+        
+    }
 }
