@@ -2,7 +2,7 @@ package com.lrg.model.character.d20;
 
 import java.util.List;
 
-import com.lrg.model.character.Rules;
+import com.lrg.model.character.rules.RuleSet;
 
 public class Skill implements Influential
 {
@@ -16,7 +16,7 @@ public class Skill implements Influential
     private List<CircumstantialModifier> circumstantialModifiers;
     private int abilityMod;
     private Attribute ability;
-    private Rules rules;
+    private RuleSet rules;
     
     public Skill(String name, Attribute reigningAttribute)
     {

@@ -1,4 +1,4 @@
-package com.lrg.model.character.d20;
+package com.lrg.model.character.rules;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,17 +6,17 @@ import java.util.List;
 public class Rule
 {
 
-    private List<RuleEvaluator> evaluations;
+    private List<RuleType> evaluations;
     
     private Rule()
     {
-        evaluations = new ArrayList<RuleEvaluator>();
+        evaluations = new ArrayList<RuleType>();
     }
     
-    public Rule(RuleEvaluator ... listOfRules)
+    public Rule(RuleType ... listOfRules)
     {
         this();
-        for (RuleEvaluator r : listOfRules)
+        for (RuleType r : listOfRules)
         {
             evaluations.add(r);
         }
@@ -30,7 +30,7 @@ public class Rule
     }
     
     
-    public enum RuleEvaluator
+    public enum RuleType
     {
         COMBAT, CONVERSATION, SPELLCASTING, LEVELING_UP, SAME_AS_LEVEL, LEVEL_MINUS_ONE, HALF_LEVEL, 
         ROUNDS_UP, ROUNDS_DOWN, WHOLE_ONLY, SKILLS;

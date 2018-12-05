@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.lrg.model.character.rules.RuleSet;
 import com.lrg.star.Interactable;
 import com.lrg.star.model.Energy;
 import com.lrg.star.model.Health;
