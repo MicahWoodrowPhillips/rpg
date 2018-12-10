@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.lrg</groupId>
-	<artifactId>javaland</artifactId>
+	<artifactId>rpg</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Java-driven RPG stuff.  Will include a GUI, libraries to support RPGs, and other libraries potentially.</description>
 
-	<name>javaland</name>
+	<name>rpg</name>
 	<url>http://maven.apache.org</url>
 
 <properties>

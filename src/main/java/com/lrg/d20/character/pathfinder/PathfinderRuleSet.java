@@ -1,9 +1,12 @@
-package com.lrg.star.model.character;
+package com.lrg.d20.character.pathfinder;
 
 import com.lrg.d20.rules.RuleSet;
 
-public class StarfinderRuleSet extends RuleSet
+public class PathfinderRuleSet extends RuleSet
 {
+    public PathfinderRuleSet()
+    {
+    }
 
     @Override
     public int getMaxSkillRanks()
@@ -19,4 +22,5 @@ public class StarfinderRuleSet extends RuleSet
         return 0;
     }
 
+    
 }

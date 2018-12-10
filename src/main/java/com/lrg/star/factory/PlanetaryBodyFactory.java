@@ -3,10 +3,10 @@ package com.lrg.star.factory;
 import java.util.HashMap;
 import java.util.List;
 
+import com.lrg.base.model.Mass;
 import com.lrg.star.enums.CosmicType;
 import com.lrg.star.enums.PeriodicElement;
 import com.lrg.star.model.BasePlanetaryBody;
-import com.lrg.star.model.Mass;
 import com.lrg.star.model.Population;
 import com.lrg.star.model.CelestialRing;
 import com.lrg.star.model.starship.Satellite;

@@ -2,8 +2,8 @@ package com.lrg.star.factory;
 
 import java.util.List;
 
+import com.lrg.base.model.Mass;
 import com.lrg.star.ShipSystem;
-import com.lrg.star.model.Mass;
 import com.lrg.star.model.starship.Starship;
 
 public class StarshipFactory

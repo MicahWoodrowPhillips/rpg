@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import java.util.HashSet;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class NameGeneratorTest
@@ -75,12 +76,14 @@ public class NameGeneratorTest
     {
         HashSet<String> set = new HashSet<String>();
         
-        NameGenerator nameGenerator = new NameGenerator(firstNamePath, "");
+        NameGenerator nameGeneratorFirst = new NameGenerator(firstNamePath, "");
+        NameGenerator nameGeneratorLast = new NameGenerator(lastNamePath, "");
         String name;
         
         for(int i = 0; i < 10000; i++)
         {
-            name = nameGenerator.generateName();
+            name = nameGeneratorFirst.generateName();
+            name += " " + nameGeneratorLast.generateName();
             
             System.out.println(name + " is name number " + (i+1));
             

@@ -3,6 +3,8 @@ package com.lrg.star.model;
 import java.util.HashMap;
 import java.util.List;
 
+import com.lrg.base.model.Mass;
+import com.lrg.base.model.MassiveBody;
 import com.lrg.star.enums.CosmicType;
 import com.lrg.star.enums.PeriodicElement;
 import com.lrg.star.model.starship.Satellite;
