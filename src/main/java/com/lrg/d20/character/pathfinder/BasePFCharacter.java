@@ -3,10 +3,8 @@ package com.lrg.d20.character.pathfinder;
 import com.lrg.d20.model.character.classes.BaseD20Character;
 import com.lrg.d20.rules.RuleSet;
 
-public abstract class BasePFCharacter extends BaseD20Character
+public class BasePFCharacter extends BaseD20Character
 {
-    
-    
     @Override
     public RuleSet getRuleSet()
     {
@@ -17,5 +15,4 @@ public abstract class BasePFCharacter extends BaseD20Character
         return this.ruleSet;
     }
 
-    
 }

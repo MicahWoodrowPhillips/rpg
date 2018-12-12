@@ -27,25 +27,31 @@ public abstract class BaseD20Character
 {
     protected RuleSet ruleSet;
     
-    protected Health health;
-    protected Energy energy;
-    protected Mass mass;
+    private Health health;
+    private Energy energy;
+    private Mass mass;
+    
+    private TextAttributes textAttributes;
 
-    protected Strength strength;
-    protected Dexterity dexterity;
-    protected Constitution constitution;
-    protected Intelligence intelligence;
-    protected Wisdom wisdom;
-    protected Charisma charisma;
+    private Strength strength;
+    private Dexterity dexterity;
+    private Constitution constitution;
+    private Intelligence intelligence;
+    private Wisdom wisdom;
+    private Charisma charisma;
     
-    protected List<Skill> skills;
+    private List<Skill> skills;
     
-    protected Map<BodySlot, Equipment> equipment;
+    private Map<BodySlot, Equipment> equipment;
+    
+    
     
     /**
      * Order will matter for the levels at some point possibly, so we should keep them in some kind of ordered list.
      */
     private List<CharacterClass> levels;
+
+    public abstract RuleSet getRuleSet();    
     
     public BaseD20Character()
     {
@@ -84,6 +90,71 @@ public abstract class BaseD20Character
         return ranged;
         
     }
+
+    public Health getHealth()
+    {
+        return health;
+    }
+
+    public Energy getEnergy()
+    {
+        return energy;
+    }
+
+    public Mass getMass()
+    {
+        return mass;
+    }
+
+    public TextAttributes getTextAttributes()
+    {
+        return textAttributes;
+    }
+
+    public Strength getStrength()
+    {
+        return strength;
+    }
+
+    public Dexterity getDexterity()
+    {
+        return dexterity;
+    }
+
+    public Constitution getConstitution()
+    {
+        return constitution;
+    }
+
+    public Intelligence getIntelligence()
+    {
+        return intelligence;
+    }
+
+    public Wisdom getWisdom()
+    {
+        return wisdom;
+    }
+
+    public Charisma getCharisma()
+    {
+        return charisma;
+    }
+
+    public List<Skill> getSkills()
+    {
+        return skills;
+    }
+
+    public Map<BodySlot, Equipment> getEquipment()
+    {
+        return equipment;
+    }
+
+    public List<CharacterClass> getLevels()
+    {
+        return levels;
+    }
     
-    public abstract RuleSet getRuleSet();    
+    
 }

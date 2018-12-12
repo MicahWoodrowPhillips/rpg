@@ -71,6 +71,7 @@ public class NameGeneratorTest
         assertFalse(name.endsWith(" "));
     }
     
+    @Ignore
     @Test
     public void nameDumpTest()
     {
