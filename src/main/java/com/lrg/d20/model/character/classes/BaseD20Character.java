@@ -1,6 +1,7 @@
 package com.lrg.d20.model.character.classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,15 +44,12 @@ public abstract class BaseD20Character
     private List<Skill> skills;
     
     private Map<BodySlot, Equipment> equipment;
+    private List<CharacterClassLevel> classLevels;
     
-    
-    
-    /**
-     * Order will matter for the levels at some point possibly, so we should keep them in some kind of ordered list.
-     */
-    private List<CharacterClass> levels;
+    private String description;
 
-    public abstract RuleSet getRuleSet();    
+    // Abstract methods
+    public abstract RuleSet getRuleSet();
     
     public BaseD20Character()
     {
@@ -61,11 +59,11 @@ public abstract class BaseD20Character
         this.intelligence = new Intelligence();
         this.wisdom = new Wisdom();
         this.charisma = new Charisma();
-        this.levels = new ArrayList<CharacterClass>();
+        this.classLevels = new ArrayList<CharacterClassLevel>();
     }
 
     public BaseD20Character(Attribute strength, Attribute dexterity, Attribute constitution,
-            Attribute intelligence, Attribute wisdom, Attribute charisma, List<CharacterClass> classLevels)
+            Attribute intelligence, Attribute wisdom, Attribute charisma, List<CharacterClassLevel> classLevels)
     {
         this.strength = (Strength) strength;
         this.dexterity = (Dexterity) dexterity;
@@ -73,7 +71,7 @@ public abstract class BaseD20Character
         this.intelligence = (Intelligence) intelligence;
         this.wisdom = (Wisdom) wisdom;
         this.charisma = (Charisma) charisma;
-        this.levels = new ArrayList<CharacterClass>(classLevels);
+        this.classLevels = new ArrayList<CharacterClassLevel>(classLevels);
     }
     
     public Attack getMeleeWeaponAttack(Interactable target, Weapon weapon)
@@ -151,10 +149,46 @@ public abstract class BaseD20Character
         return equipment;
     }
 
-    public List<CharacterClass> getLevels()
+    public List<CharacterClassLevel> getCharacterClassLevels()
     {
-        return levels;
+        return classLevels;
     }
     
+    public String getCharacterClassesAndLevelsAsCSVString()
+    {
+
+        StringBuffer sb = new StringBuffer();
+        for (CharacterClassLevel clz : this.getCharacterClassLevels())
+        {
+            sb.append(clz.getName());
+            sb.append(" (");
+            sb.append(clz.getLevelValue());
+            sb.append("), ");
+        }
+        
+        // Remove the final ", " from the end
+        sb.replace(sb.length()-3, sb.length()-1, "");
+        
+        return sb.toString();
+    }
     
+    protected int getRangedAttackValue()
+    {
+        return 0;
+    }
+
+    protected int getMeleeAttackValue()
+    {
+        return 0;
+    }
+    
+    protected int getBAB()
+    {
+        return 0;
+    }
+    
+    protected String getDescription()
+    {
+        return description;
+    }
 }

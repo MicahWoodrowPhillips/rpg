@@ -2,7 +2,7 @@ package com.lrg.d20.model.character.classes;
 
 import java.util.List;
 
-import com.lrg.d20.model.character.JournalEntry;
+import com.lrg.d20.character.JournalEntry;
 
 public class TextAttributes
 {

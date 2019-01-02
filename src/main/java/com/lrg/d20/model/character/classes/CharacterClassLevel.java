@@ -1,12 +1,9 @@
 package com.lrg.d20.model.character.classes;
 
-import java.util.List;
-
-public abstract class CharacterClass
+public abstract class CharacterClassLevel
 {
     private String name;
-    List<Level> levels;
-    
+    private int levelValue;
     
     public String getName()
     {
@@ -17,5 +14,7 @@ public abstract class CharacterClass
     {
         this.name = name;
     }
+
+    protected abstract int getLevelValue();
     
 }

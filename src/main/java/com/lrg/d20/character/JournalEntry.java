@@ -1,4 +1,4 @@
-package com.lrg.d20.model.character;
+package com.lrg.d20.character;
 
 public class JournalEntry
 {
