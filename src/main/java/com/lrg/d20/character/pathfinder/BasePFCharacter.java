@@ -1,6 +1,7 @@
 package com.lrg.d20.character.pathfinder;
 
 import com.lrg.d20.model.character.classes.BaseD20Character;
+import com.lrg.d20.model.character.classes.CharacterClassLevel;
 import com.lrg.d20.rules.RuleSet;
 
 public class BasePFCharacter extends BaseD20Character
@@ -26,6 +27,8 @@ public class BasePFCharacter extends BaseD20Character
         sb.append(' ');
         sb.append(this.getTextAttributes().getLastName());
         sb.append('\n');
+        // sb.append(',');
+        // sb.append(titlesGained());
         
         // Classes
         sb.append('\n');
@@ -70,6 +73,27 @@ public class BasePFCharacter extends BaseD20Character
     private int getCMD()
     {
         return 0;
+    }
+    
+    /**
+     * levelUp - does a lookup for the passed-in class.  If it exists, adds to its existing capabilities on the character involved.<br />
+     * If not, adds it to the character's class list.  Does NOT handle multiclass penalties, should do so in a Ruleset somehow?<br />
+     * <br />
+     * This method creates a bounded type parameter in order to grab a class from CharacterClassLevel specifically.<br />
+     * 
+     * @param characterClass
+     */
+    public <charClass extends CharacterClassLevel> void levelUp(charClass characterClass)
+    {
+        for(CharacterClassLevel clazz : this.getCharacterClassLevels())
+        {
+            if (clazz.getClass().equals(characterClass))
+            {
+                clazz.levelUp();
+                break;
+            }
+        }
+        
     }
 
 }

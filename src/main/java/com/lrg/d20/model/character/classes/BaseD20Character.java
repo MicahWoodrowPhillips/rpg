@@ -191,4 +191,9 @@ public abstract class BaseD20Character
     {
         return description;
     }
+
+    public boolean isNpc()
+    {
+        return false;
+    }
 }
